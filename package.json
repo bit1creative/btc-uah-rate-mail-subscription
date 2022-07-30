@@ -9,6 +9,7 @@
     "lint:fix": "eslint --fix .",
     "build": "npx tsc && pnpm copy-files",
     "start": "node dist/index.js",
+    "docker-start": "pnpm run build && pnpm run start",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "copy-files": "copyfiles -u 1 src/data/emails.txt dist/"
   },
