@@ -6,8 +6,6 @@ export const sendEmails = async (rate: string, emailsArray: string[]) => {
   const pass = process.env.GMAIL_APP_PASS
   const template = mailTemplate(rate);
   const emails = emailsArray;
-  console.log(emails);
-  
   
     const transporter = nodemailer.createTransport({
         service: 'gmail',

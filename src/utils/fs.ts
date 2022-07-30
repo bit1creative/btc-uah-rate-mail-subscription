@@ -26,10 +26,6 @@ export const addEmailToDB = (email: string) => {
             }
         } else {
             fs.appendFileSync(pathToFile, `,${email}`)
-            return {
-                status: 200,
-                message: 'E-mail додано',
-            }
         }
     } else {
         fs.mkdirSync(pathToFolder)
