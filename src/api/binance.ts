@@ -1,12 +1,12 @@
-import axios from 'axios'
-import { z } from 'zod'
+import axios from 'axios';
+import { z } from 'zod';
 
-import { BINANCE_URI } from '../constants'
+import { BINANCE_URI } from '../constants';
 
 const rateSchema = z.object({
     symbol: z.string(),
     price: z.string(),
-})
+});
 
 export const getRateBTCUAH = async () => {
     const { data } = await axios({
@@ -15,7 +15,7 @@ export const getRateBTCUAH = async () => {
         params: {
             symbol: 'BTCUAH',
         },
-    })
+    });
 
-    return rateSchema.parse(data)
-}
+    return rateSchema.parse(data);
+};
