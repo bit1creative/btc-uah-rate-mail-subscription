@@ -8,23 +8,23 @@ import { pathToFileDB, pathToFolderDB } from '../constants';
 
 export class EmailService {
     static addEmailToDB = async (email: string) => {
-        const emailsArray = getEmailsFromDB();
+        const emailsArray = await getEmailsFromDB();
 
         if (!emailsArray.length) {
-            fs.mkdirSync(pathToFolderDB);
-            fs.appendFileSync(pathToFileDB, email);
+            await fs.promises.mkdir(pathToFolderDB);
+            await fs.promises.appendFile(pathToFileDB, email);
             return { status: 200, message: 'E-mail додано' };
         }
 
         if (emailsArray.includes(email)) return { status: 409, message: email };
 
-        fs.appendFileSync(pathToFileDB, `,${email}`);
+        await fs.promises.appendFile(pathToFileDB, `,${email}`);
         return { status: 200, message: 'E-mail додано' };
     };
 
     static sendEmails = async () => {
         const { price } = await getRateBTCUAH();
-        const emails = getEmailsFromDB();
+        const emails = await getEmailsFromDB();
 
         if (price && emails.length) {
             const info = await sendEmails(price, emails);

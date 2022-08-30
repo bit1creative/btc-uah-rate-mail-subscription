@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 const mailTemplate = (rate: string) => `<b>BTC/UAH: ${rate}</b>`;
 
 export const sendEmails = async (rate: string, emailsArray: string[]) => {
+    const authMail = process.env.GMAIL_AUTH_MAIL;
     const pass = process.env.GMAIL_APP_PASS;
     const template = mailTemplate(rate);
     const emails = emailsArray;
@@ -10,13 +11,13 @@ export const sendEmails = async (rate: string, emailsArray: string[]) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'genesis.test.email2022@gmail.com',
+            user: authMail,
             pass: pass,
         },
     });
 
     const info = await transporter.sendMail({
-        from: '"Genesis School" <genesis.test.email2022@gmail.com>',
+        from: `"Genesis School" <${authMail}>`,
         to: emails,
         subject: 'BTCUAH Rate',
         text: rate,

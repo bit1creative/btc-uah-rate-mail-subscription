@@ -1,12 +1,10 @@
 import fs from 'fs';
-import path from 'path';
 
-const pathToFolder = path.join(__dirname, '../data');
-const pathToFile = path.join(pathToFolder, 'emails.txt');
+import { pathToFolderDB, pathToFileDB } from '../constants';
 
-export const getEmailsFromDB = () => {
-    if (fs.existsSync(pathToFile)) {
-        const emails = fs.readFileSync(pathToFile, {
+export const getEmailsFromDB = async () => {
+    if (fs.existsSync(pathToFolderDB)) {
+        const emails = await fs.promises.readFile(pathToFileDB, {
             encoding: 'utf8',
             flag: 'r',
         });
