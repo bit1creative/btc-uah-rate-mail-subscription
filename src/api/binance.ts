@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { rateResponseSchema } from '../schemas/rate.schema';
-import { binanceUri } from '../constants';
+import { binanceUri } from '../constants/essentials';
 
 export const getRateBTCUAH = async () => {
     const { data } = await axios({

@@ -9,7 +9,6 @@ import { errorHandlerMiddleware } from './middlewares/error.middleware';
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
 
 app.use(errorHandlerMiddleware);
 
@@ -20,6 +19,4 @@ app.get('/status', (req: Request, res: Response) => {
 app.use(emailRouter);
 app.use(rateRouter);
 
-app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+export default app;

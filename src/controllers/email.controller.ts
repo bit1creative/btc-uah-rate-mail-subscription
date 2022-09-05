@@ -12,7 +12,7 @@ export class EmailController {
             const { status, message } = await EmailService.addEmailToDB(
                 email as string
             );
-            res.status(status).send(message);
+            return res.status(status).send(message);
         } catch (err) {
             next(err);
         }
